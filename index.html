@@ -15,7 +15,7 @@
     <!-- Style Sheet -->
     <link rel="stylesheet" href="style/style.css" />
   </head>
-  <body>
+  <body class="bg-light">
     <header class="">
       <!-- Navbar Start -->
       <nav class="navbar navbar-expand-lg bg-light border-bottom border-2 p-4">
@@ -79,11 +79,49 @@
 
       <!-- News Category items found Start -->
       <section class="mb-5">
-        <div class="p-3 border border-1 rounded-2 text-black bg-light">
+        <div class="p-3 border border-1 rounded-2 text-black bg-white">
           <span>4</span> items found for category Entertainment
         </div>
       </section>
       <!-- News Category items found End -->
+
+      <!-- Sort and Button Start-->
+      <section>
+        <div class="d-flex justify-content-between">
+          <div>
+            <div class="dropdown">
+              <span class="text-black fw-semibold">Sort By View:</span>
+              <button
+                class="btn btn-light dropdown-toggle fw-semibold text-black-50"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Default
+              </button>
+              <ul class="dropdown-menu dropdown-menu-light">
+                <li>
+                  <a
+                    class="dropdown-item active fw-semibold text-white"
+                    href="#"
+                    >Highest view</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item fw-semibold text-black-50" href="#"
+                    >Lowest view</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <button class="btn btn-primary me-2">Today’s Pick</button>
+            <button class="btn btn-outline-primary">Trending</button>
+          </div>
+        </div>
+      </section>
+      <!-- Sort and Button Start-->
     </main>
     <!-- Main section End -->
     <!-- Bootstrap CDN -->
