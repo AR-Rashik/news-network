@@ -10,7 +10,7 @@ body {
   
 }
 
-#navbar-brand{
+#navbar-brand, footer{
   font-family: 'Playfair Display', serif;
 }
 
