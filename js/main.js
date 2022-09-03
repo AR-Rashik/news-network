@@ -12,12 +12,10 @@ const loadAllNewsCategory = async() => {
 }
 
 const displayAllNewsCategory = newsCategory => {
-  // console.log(category);
 
   const allNewsCategory = document.getElementById('all-news-category');
 
   for(let news of newsCategory){
-    // console.log(news);
     const newsDiv = document.createElement('div');
     newsDiv.innerHTML = `
       <a onclick="loadNewsCategoryDetails('${news.category_id}')" class="text-decoration-none text-secondary px-3 mb-3" href="#"
@@ -25,11 +23,6 @@ const displayAllNewsCategory = newsCategory => {
     `
 
     allNewsCategory.appendChild(newsDiv);
-
-    // const categoryNameFound = document.getElementById('category-name-found');
-    // categoryNameFound.innerText = news.category_name;
-
-    
   }
 }
 
@@ -51,7 +44,6 @@ const loadNewsCategoryDetails = async id => {
 }
 
 const displayNewsCategoryDetails = details => {
-  // console.log(details);
 
   const newsCategoryItemsFound = document.getElementById('news-category-items-found');
   newsCategoryItemsFound.innerText = details.length;
@@ -59,23 +51,20 @@ const displayNewsCategoryDetails = details => {
   const newsDeatailsContainer = document.getElementById("news-details-container");
   newsDeatailsContainer.textContent = "";
 
-  for(let detail of details){
-    
-  }
-
   details.sort(function(a, b) {
     return b.total_view - a.total_view;
   });
 
   details.forEach(detail => {
 
-    
-    // console.log(detail);
     const {title, author, details, thumbnail_url, total_view, _id} = detail;
-    // console.log(author.name);
-    // console.log(title);
-
+    
+    toggleSpinner(false);
+    
     const newsDetailsDiv = document.createElement('div');
+
+    toggleSpinner(false);
+
     newsDetailsDiv.innerHTML = `
         <div class="col-12">
         <div
@@ -117,8 +106,6 @@ const displayNewsCategoryDetails = details => {
       </div>
     `
     newsDeatailsContainer.appendChild(newsDetailsDiv);
-
-    toggleSpinner(false);
   })
 }
 
@@ -131,8 +118,6 @@ const toggleSpinner = isLoading => {
     loaderSection.classList.add('d-none');
   }
 }
-
-
 
 const loadNewsModalDetails = async id => {
   const url = `https://openapi.programming-hero.com/api/news/${id}`;
@@ -149,8 +134,7 @@ const loadNewsModalDetails = async id => {
 }
 
 const displayNewsDetailsModal = details => {
-  // console.log(details);
-
+  
   for(let detail of details){
     console.log(detail);
 
@@ -165,7 +149,6 @@ const displayNewsDetailsModal = details => {
       <div>View: ${detail.total_view === null ? "Not available " : detail.total_view} M</div>
       <div>Rating: ${detail.rating.number}</div>
     `
-
   }
 }
 
