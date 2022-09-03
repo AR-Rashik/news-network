@@ -8,6 +8,7 @@ const loadAllNewsCategory = async() => {
   }
   catch (error){
     console.log(error);
+    alert('Error in API!');
   }
 }
 
@@ -25,6 +26,9 @@ const displayAllNewsCategory = newsCategory => {
     `
 
     allNewsCategory.appendChild(newsDiv);
+
+    // const categoryNameFound = document.getElementById('category-name-found');
+    // categoryNameFound.innerText = news.category_name;
   }
 }
 
@@ -37,11 +41,15 @@ const loadNewsCategoryDetails = async id => {
   }
   catch (error){
     console.log(error);
+    alert('Error in API!');
   }
 }
 
 const displayNewsCategoryDetails = details => {
   // console.log(details);
+
+  const newsCategoryItemsFound = document.getElementById('news-category-items-found');
+  newsCategoryItemsFound.innerText = details.length;
 
   const newsDeatailsContainer = document.getElementById("news-details-container");
   newsDeatailsContainer.textContent = "";
@@ -51,8 +59,8 @@ const displayNewsCategoryDetails = details => {
   // }
 
   details.forEach(detail => {
-    console.log(detail);
-    const {title, author, details, image_url, thumbnail_url, total_view} = detail;
+    // console.log(detail);
+    const {title, author, details, image_url, thumbnail_url, total_view, _id} = detail;
     // console.log(author.name);
     // console.log(title);
 
@@ -80,7 +88,7 @@ const displayNewsCategoryDetails = details => {
               </div>
               <div class="fw-semibold fs-6">
                 <i class="bi bi-eye"></i>
-                <span class="ms-2"><span>${total_view}</span>M</span>
+                <span class="ms-2"><span>${total_view === null ? "Not available" : total_view}</span>M</span>
               </div>
               <div class="">
                 <i class="bi bi-star-half"></i>
@@ -90,7 +98,7 @@ const displayNewsCategoryDetails = details => {
                 <i class="bi bi-star"></i>
               </div>
               <div>
-                <i id="btn-details-news" class="bi bi-arrow-right fs-4"></i>
+                <i onclick="loadNewsModalDetails('${_id}')" id="btn-details-news" class="bi bi-arrow-right fs-4" data-bs-toggle="modal" data-bs-target="#newsDetailsModal"></i>
               </div>
             </div>
           </div>
@@ -99,6 +107,32 @@ const displayNewsCategoryDetails = details => {
     `
     newsDeatailsContainer.appendChild(newsDetailsDiv);
   })
+}
+
+const loadNewsModalDetails = async id => {
+  const url = `https://openapi.programming-hero.com/api/news/${id}`;
+  
+  try{
+    const response = await fetch(url);
+    const data = await response.json();
+    displayNewsDetailsModal(data.data);
+  }
+  catch(error){
+    console.log(error);
+    alert('Error in API!');
+  }
+}
+
+const displayNewsDetailsModal = details => {
+  // console.log(details);
+
+  for(let detail of details){
+    console.log(detail);
+
+    const modalTitle = document.getElementById('newsDetailsModalLabel');
+    modalTitle.innerText = detail.title;
+
+  }
 }
 
 loadAllNewsCategory();

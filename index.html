@@ -76,7 +76,7 @@
       <!-- News Category items found Start -->
       <section class="mb-5">
         <div class="p-3 border border-1 rounded-2 text-black bg-white">
-          <span>4</span> items found for category Entertainment
+          <span id="news-category-items-found">00</span> items found for category <span id="category-name-found"></span>
         </div>
       </section>
       <!-- News Category items found End -->
@@ -172,6 +172,31 @@
         </div>
       </section>
       <!-- News Section End -->
+
+      <!-- Modal Section Start -->
+      <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="newsDetailsModal" tabindex="-1" aria-labelledby="newsDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newsDetailsModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+      <!-- Modal Section End -->
     </main>
 
     <footer class="text-center fw-bold text-secondary p-3 bg-light">
