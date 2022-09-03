@@ -39,7 +39,6 @@ const loadNewsCategoryDetails = async id => {
   }
   catch (error){
     console.log(error);
-    alert('Error in API!');
   }
 }
 
@@ -129,7 +128,6 @@ const loadNewsModalDetails = async id => {
   }
   catch(error){
     console.log(error);
-    alert('Error in API!');
   }
 }
 
