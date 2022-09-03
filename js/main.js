@@ -8,7 +8,6 @@ const loadAllNewsCategory = async() => {
   }
   catch (error){
     console.log(error);
-    alert('Error in API!');
   }
 }
 
@@ -29,11 +28,17 @@ const displayAllNewsCategory = newsCategory => {
 
     // const categoryNameFound = document.getElementById('category-name-found');
     // categoryNameFound.innerText = news.category_name;
+
+    
   }
 }
 
 const loadNewsCategoryDetails = async id => {
+
+  toggleSpinner(true);
+
   const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
+
   try{
     const response = await fetch(url);
     const data = await response.json();
@@ -54,13 +59,19 @@ const displayNewsCategoryDetails = details => {
   const newsDeatailsContainer = document.getElementById("news-details-container");
   newsDeatailsContainer.textContent = "";
 
-  // for(let detail of details){
-  //   console.log(detail);
-  // }
+  for(let detail of details){
+    
+  }
+
+  details.sort(function(a, b) {
+    return b.total_view - a.total_view;
+  });
 
   details.forEach(detail => {
+
+    
     // console.log(detail);
-    const {title, author, details, image_url, thumbnail_url, total_view, _id} = detail;
+    const {title, author, details, thumbnail_url, total_view, _id} = detail;
     // console.log(author.name);
     // console.log(title);
 
@@ -82,13 +93,13 @@ const displayNewsCategoryDetails = details => {
               <div class="d-flex justify-content-center align-items-center w-auto mb-3 mb-md-0">
                 <img class="img-fluid rounded-circle author-img" src="${author.img}" alt="">
                 <div class="d-flex justify-content-center align-items-center flex-column ps-3">
-                  <div class="author-name text-black">${author.name === null ? 'No author found' : author.name}</div>
+                  <div class="author-name text-black">${author.name === null ? 'Not available' : author.name}</div>
                   <div class="author-time text-black-50">Jan 10, 2022 </div>
                 </div>
               </div>
               <div class="fw-semibold fs-6">
                 <i class="bi bi-eye"></i>
-                <span class="ms-2"><span>${total_view === null ? "Not available " : total_view}</span>M</span>
+                <span class="ms-2"><span>${total_view === null ? "Not available " : total_view}</span> M</span>
               </div>
               <div class="">
                 <i class="bi bi-star-half"></i>
@@ -106,8 +117,22 @@ const displayNewsCategoryDetails = details => {
       </div>
     `
     newsDeatailsContainer.appendChild(newsDetailsDiv);
+
+    toggleSpinner(false);
   })
 }
+
+const toggleSpinner = isLoading => {
+  const loaderSection = document.getElementById('loader');
+  if(isLoading){
+    loaderSection.classList.remove('d-none');
+  }
+  else{
+    loaderSection.classList.add('d-none');
+  }
+}
+
+
 
 const loadNewsModalDetails = async id => {
   const url = `https://openapi.programming-hero.com/api/news/${id}`;
@@ -134,7 +159,7 @@ const displayNewsDetailsModal = details => {
 
     const modalContainer = document.getElementById('news-modal-body');
     modalContainer.innerHTML = `
-      <div class="text-center mb-3"><img class="img-fluid w-50 rounded" src="${detail.author.img}"></div>
+      <div class="text-center mb-3"><img class="img-fluid w-50 rounded-circle" src="${detail.author.img}"></div>
       <div>Author name: ${detail.author.name === null ? "Not Available" : detail.author.name}</div>
       <div>Date: ${detail.author.published_date}</div>
       <div>View: ${detail.total_view === null ? "Not available " : detail.total_view} M</div>
