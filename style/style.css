@@ -18,6 +18,10 @@ body {
   font-size: 14px;
 }
 
+.author-img{
+  width: 50px;
+}
+
 #btn-details-news{
   cursor: pointer;
 }

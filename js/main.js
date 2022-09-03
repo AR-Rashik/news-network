@@ -77,18 +77,18 @@ const displayNewsCategoryDetails = details => {
           />
           <div class="d-flex flex-column justify-content-center ps-4 mt-lg-0 mt-4">
             <h4 class="text-dark fs-4 fw-bold mb-3">${title}</h4>
-            <p class="text-secondary mb-4">${details.length > 500 ? details.slice(0, 500) + '...' : details}</p>
+            <p class="text-secondary mb-5">${details.length > 500 ? details.slice(0, 500) + '...' : details}</p>
             <div class="d-flex justify-content-between flex-wrap">
               <div class="d-flex justify-content-center align-items-center w-auto mb-3 mb-md-0">
-                <img class="img-fluid" src="images/author.png" alt="">
-                <div class="d-flex flex-column ps-2">
-                  <div class="author-name text-black">${author.name === 'system' ? 'No author found' : author.name}</div>
+                <img class="img-fluid rounded-circle author-img" src="${author.img}" alt="">
+                <div class="d-flex justify-content-center align-items-center flex-column ps-3">
+                  <div class="author-name text-black">${author.name === null ? 'No author found' : author.name}</div>
                   <div class="author-time text-black-50">Jan 10, 2022 </div>
                 </div>
               </div>
               <div class="fw-semibold fs-6">
                 <i class="bi bi-eye"></i>
-                <span class="ms-2"><span>${total_view === null ? "Not available" : total_view}</span>M</span>
+                <span class="ms-2"><span>${total_view === null ? "Not available " : total_view}</span>M</span>
               </div>
               <div class="">
                 <i class="bi bi-star-half"></i>
@@ -131,6 +131,15 @@ const displayNewsDetailsModal = details => {
 
     const modalTitle = document.getElementById('newsDetailsModalLabel');
     modalTitle.innerText = detail.title;
+
+    const modalContainer = document.getElementById('news-modal-body');
+    modalContainer.innerHTML = `
+      <div class="text-center mb-3"><img class="img-fluid w-50 rounded" src="${detail.author.img}"></div>
+      <div>Author name: ${detail.author.name === null ? "Not Available" : detail.author.name}</div>
+      <div>Date: ${detail.author.published_date}</div>
+      <div>View: ${detail.total_view === null ? "Not available " : detail.total_view} M</div>
+      <div>Rating: ${detail.rating.number}</div>
+    `
 
   }
 }
